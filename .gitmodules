@@ -1,0 +1,3 @@
+[submodule "schematics/libs/bv_kicad_libs"]
+	path = schematics/libs/bv_kicad_libs
+	url = git@github.com:koushiniku/bv_kicad_libs.git
