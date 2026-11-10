@@ -4,36 +4,34 @@
 # TBD: Blind slots, backdrill, BGA, trace coils
 
 (rule "globals"
-    (constraint hole_size (min 0.15mm) (max 6.3mm))
+    (constraint hole_size (min 0.3mm) (max 6.3mm))
     (constraint solder_mask_expansion (opt 0mm))
-    (constraint text_thickness (min 0.15mm))
-    (constraint text_height (min 1.0mm))
+    (constraint text_thickness (min 0.075mm))
+    (constraint text_height (min 0.6mm))
     (constraint track_width (min 0.1mm))
-    (constraint clearance (min 0.1mm))
     (constraint edge_clearance (min 0.2mm))
     (constraint via_diameter (min 0.45mm))
+	(constraint connection_width (min 0.1mm))
+	(constraint min_resolved_spokes 2)
+	(constraint thermal_relief_gap (min 0.5mm))
+	(constraint thermal_spoke_width (opt 0.5mm))
+    (constraint hole_to_hole (min 0.2mm))
+    (constraint annular_width (min 0.075mm))
+    (constraint hole_clearance (min 0.2mm))
+	(constraint zone_connection solid)
 )
 
 (rule "pads"
-    (constraint hole_to_hole (min 0.45mm))
     (constraint annular_width (min 0.20mm))
-    (constraint hole_clearance (min 0.35mm))
     (constraint silk_clearance (min 0.15mm))
     (condition "A.Type == 'Pad'")
 )
 
-(rule "vias"
-    (constraint hole_size (min 0.3mm))
-    (constraint annular_width (min 0.075mm))
-    (constraint hole_to_hole (min 0.2mm))
-    (constraint hole_clearance (min 0.2mm))
-    (condition "A.Type == 'Via'")
-)
-
-(rule "NTPHs"
-    (constraint hole_size (min 0.50mm))
-    (constraint hole_clearance (min 0.2mm))
-    (condition "!A.isPlated()")
+(rule "PTHs"
+	(constraint zone_connection thermal_reliefs)
+	(constraint hole_clearance (min 0.35mm))
+    (constraint hole_to_hole (min 0.45mm))
+	(condition "A.Pad_Type == 'Through-hole'")
 )
 
 (rule "plated slots"
@@ -41,9 +39,10 @@
     (condition "A.Hole_Size_X != A.Hole_Size_Y")
 )
 
-(rule "non-plated slots"
-    (constraint hole_size (min 1.0mm))
-    (condition "!A.isPlated() && A.Hole_Size_X != A.Hole_size_Y")
+(rule "NTPHs"
+    (constraint hole_size (min 0.5mm))
+	(constraint annular_width (min 0.45mm))	
+    (condition "A.Pad_Type == 'NPTH, mechanical'")
 )
 
 (rule "castellated holes"
@@ -53,19 +52,18 @@
     (condition "A.Fabrication_Property == 'Castellated pad'")
 )
 
-(rule "NPTH pads"
-    (constraint annular_width (min 0.45mm))
-    (condition "A.Type == 'Pad' && !A.isPlated()")
+(rule "non-plated slots"
+    (constraint hole_size (min 1.0mm))
+    (condition "A.Pad_Type == 'NPTH, mechanical' && A.Hole_Size_X != A.Hole_size_Y")
 )
 
-(rule "inner via hole to copper clearance"
-    (constraint hole_clearance (min 0.2mm))
-    (layer inner)
-    (condition "A.Type == 'Via'")
-)
-
-(rule "inner PTH to copper clearance"
+(rule "inner PTHs"
     (constraint hole_clearance (min 0.3mm))
     (layer inner)
-    (condition "A.Type == 'Pad' && A.IsPlated()")
+    (condition "A.Pad_Type == 'Through-hole'")
 )
+
+#(rule "via-in-pad"
+#	(constraint physical_hole_clearance (min 0.35mm))
+#	(condition "B.Pad_Type == 'SMD'")
+#)
