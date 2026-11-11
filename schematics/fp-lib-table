@@ -1,4 +1,4 @@
 (fp_lib_table
 	(version 7)
-	(lib (name "libs") (type "Table") (uri "${KIPRJMOD}/libs/bv_kicad_libs/fp-lib-table") (options "") (descr ""))
+	(lib (name "bv") (type "Table") (uri "${KIPRJMOD}/libs/bv_kicad_libs/fp-lib-table") (options "") (descr ""))
 )
