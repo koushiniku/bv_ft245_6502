@@ -167,7 +167,7 @@
         "min_track_width": 0.1,
         "min_via_annular_width": 0.2,
         "min_via_diameter": 0.45,
-        "solder_mask_to_copper_clearance": 0.09,
+        "solder_mask_to_copper_clearance": 0.005,
         "use_height_for_length_calcs": true
       },
       "teardrop_options": [
@@ -647,6 +647,10 @@
       {
         "netclass": "Power",
         "pattern": "+5V"
+      },
+      {
+        "netclass": "CLK",
+        "pattern": "/DW|/~{CR}|/~{CW}|/~{DATA_WR}|/~{DR}|/~{DW}|~{CSR_RD}|~{CSR_WR}|~{DATA_RD}"
       }
     ]
   },
@@ -758,7 +762,7 @@
           "group_by": false,
           "label": "LCSC",
           "name": "LCSC",
-          "show": false
+          "show": true
         },
         {
           "group_by": false,
@@ -815,7 +819,7 @@
         "uuid": "7dbea4db-5192-49a5-97c9-c54c75d9ab0d"
       }
     ],
-    "used_designators": "#FLG1-2,#PWR1-38,C1-17,D1-3,FB1,FID1-3,J1-4,Q1,R1-5,U1-14,Y1",
+    "used_designators": "#FLG1-2,#PWR1-38,C1-17,D1-3,FB1,FID1-3,J1-4,Q1,R1-10,U1-14,Y1",
     "variants": []
   },
   "sheets": [
