@@ -60,7 +60,7 @@
           "hatch_smoothing_level": 0,
           "hatch_smoothing_value": 0.1,
           "hatch_thickness": 1.0,
-          "min_clearance": 0.1,
+          "min_clearance": 0.0,
           "min_island_area": 10.0,
           "min_thickness": 0.1,
           "pad_connection": 3,
@@ -550,7 +550,7 @@
         "clearance": 0.1,
         "diff_pair_gap": 0.1,
         "diff_pair_via_gap": 0.25,
-        "diff_pair_width": 0.1,
+        "diff_pair_width": 0.15,
         "line_style": 0,
         "microvia_diameter": 0.45,
         "microvia_drill": 0.3,
@@ -558,20 +558,11 @@
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 2147483647,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.1,
+        "track_width": 0.15,
         "tuning_profile": "",
         "via_diameter": 0.45,
         "via_drill": 0.3,
         "wire_width": 6
-      },
-      {
-        "clearance": 0.1,
-        "name": "CLK",
-        "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 1,
-        "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.1349,
-        "tuning_profile": ""
       },
       {
         "clearance": 0.1,
@@ -588,7 +579,7 @@
         "diff_pair_width": 0.1029,
         "name": "USB_D",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 2,
+        "priority": 1,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.1029,
         "tuning_profile": ""
@@ -606,51 +597,23 @@
       },
       {
         "netclass": "Power",
-        "pattern": "/VBUS"
-      },
-      {
-        "netclass": "Default",
         "pattern": "+5V"
       },
       {
         "netclass": "USB_D",
-        "pattern": "/USB_D-"
+        "pattern": "/D+"
       },
       {
         "netclass": "USB_D",
-        "pattern": "/USB_D+"
-      },
-      {
-        "netclass": "CLK",
-        "pattern": "PHI2"
-      },
-      {
-        "netclass": "CLK",
-        "pattern": "~{CSR_WR}"
-      },
-      {
-        "netclass": "CLK",
-        "pattern": "~{CSR_RD}"
-      },
-      {
-        "netclass": "CLK",
-        "pattern": "~{DATA_RD}"
-      },
-      {
-        "netclass": "CLK",
-        "pattern": "/~{DATA_WR}"
-      },
-      {
-        "netclass": "CLK",
-        "pattern": "DATA_WR"
+        "pattern": "/D-"
       },
       {
         "netclass": "Power",
-        "pattern": "+5V"
+        "pattern": "/VBUS"
       },
       {
-        "netclass": "CLK",
-        "pattern": "/DW|/~{CR}|/~{CW}|/~{DATA_WR}|/~{DR}|/~{DW}|~{CSR_RD}|~{CSR_WR}|~{DATA_RD}"
+        "netclass": "Power",
+        "pattern": "+3V3"
       }
     ]
   },
